@@ -78,9 +78,10 @@ namespace _8puzzle
 
         private void btn_next_Click(object sender, EventArgs e)
         {
-            if (stateNumber >= path.Count - 2)
+            if (stateNumber >= path.Count - 1)
             {
                 this.btn_next.Enabled = false;
+                return;
             }
             stateNumber++;
             this.lb_amountStep.Text = (stateNumber+1).ToString() + "/" + path.Count.ToString();
@@ -100,8 +101,6 @@ namespace _8puzzle
 
         private void btn_mix_Click(object sender, EventArgs e)
         {
-            this.btn_pre.Enabled = false;
-            this.btn_next.Enabled = false;
             stateNumber = 0;
             path.Clear();
             this.lb_amountStep.Text = "Step";
@@ -133,10 +132,12 @@ namespace _8puzzle
 
         private void btn_pre_Click(object sender, EventArgs e)
         {
-            if (stateNumber <= 1)
+            if (stateNumber <= 0)
             {
                 this.btn_pre.Enabled = false;
+                return;
             }
+
             string nameLabel = "label";
             stateNumber--;
             this.lb_amountStep.Text = (stateNumber + 1).ToString() + "/" + path.Count.ToString();
